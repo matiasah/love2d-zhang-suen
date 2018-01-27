@@ -1,5 +1,5 @@
 # LÖVE Zhang Suen
-A Zhang Suen Algorithm Implementation for löve
+A Zhang Suen Algorithm Implementation for löve<br>
 (Can be used to calculate the erosion of images)
 
 # Samples
