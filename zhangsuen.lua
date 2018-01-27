@@ -1,3 +1,4 @@
+-- Input image colors must be white or black, other colors are not permited
 SkeletonShader = love.graphics.newShader [[
 	
 	extern float iter;
