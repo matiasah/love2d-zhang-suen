@@ -11,3 +11,5 @@ A Zhang Suen Algorithm Implementation for löve<br>
 ## Skeletonizing
 ![](https://i.imgur.com/snzZoKI.jpg)
 ![](https://i.imgur.com/JbTxJQq.png)
+![](https://i.imgur.com/36aeBBm.jpg)
+![](https://i.imgur.com/6n8CEJx.png)
