@@ -60,7 +60,7 @@ ErosionShader = love.graphics.newShader [[
 	
 	vec4 effect(vec4 color, Image texture, vec2 tc, vec2 pixelCoords) {
 		
-		if ( color.r == 1.0 ) {
+		if ( Texel(texture, tc).r == 0.0 ) {
 			
 			float n = N(texture, tc);
 			
@@ -69,10 +69,10 @@ ErosionShader = love.graphics.newShader [[
 			float P6 = Texel(texture, tc + vec2(0, 1) / Size).r;
 			float P8 = Texel(texture, tc + vec2(-1, -1) / Size).r;
 			
-			float M1 = iter == 1.0 ? ( P2 * P4 * P6 ) : ( P2 * P4 * P8 );
-			float M2 = iter == 1.0 ? ( P4 * P6 * P8 ) : ( P2 * P6 * P8 );
+			bool M1 = mod(iter, 2) == 1.0 ? ( P2 == 1.0 || P4 == 1.0 || P6 == 1.0 ) : ( P2 == 1.0 || P4 == 1.0 || P8 == 1.0 );
+			bool M2 = mod(iter, 2) == 1.0 ? ( P4 == 1.0 || P6 == 1.0 || P8 == 1.0 ) : ( P2 == 1.0 || P6 == 1.0 || P8 == 1.0 );
 			
-			if ( S(texture, tc) == 1 && n >= 2 && n <= 6 && M1 == 0.0 && M2 == 0.0 ) {
+			if ( S(texture, tc) == 1 && n >= 3 && n <= 6 && M1 && M2 ) {
 				
 				return vec4(0.0);
 				
@@ -146,7 +146,7 @@ SkeletonShader = love.graphics.newShader [[
 	
 	vec4 effect(vec4 color, Image texture, vec2 tc, vec2 pixelCoords) {
 		
-		if ( color.r == 1.0 ) {
+		if ( Texel(texture, tc).r == 0.0 ) {
 			
 			float n = N(texture, tc);
 			
@@ -155,10 +155,10 @@ SkeletonShader = love.graphics.newShader [[
 			float P6 = Texel(texture, tc + vec2(0, 1) / Size).r;
 			float P8 = Texel(texture, tc + vec2(-1, -1) / Size).r;
 			
-			float M1 = iter == 1.0 ? ( P2 * P4 * P6 ) : ( P2 * P4 * P8 );
-			float M2 = iter == 1.0 ? ( P4 * P6 * P8 ) : ( P2 * P6 * P8 );
+			bool M1 = mod(iter, 2) == 1.0 ? ( P2 == 1.0 || P4 == 1.0 || P6 == 1.0 ) : ( P2 == 1.0 || P4 == 1.0 || P8 == 1.0 );
+			bool M2 = mod(iter, 2) == 1.0 ? ( P4 == 1.0 || P6 == 1.0 || P8 == 1.0 ) : ( P2 == 1.0 || P6 == 1.0 || P8 == 1.0 );
 			
-			if ( S(texture, tc) == 1 && n >= 2 && n <= 6 && M1 == 0.0 && M2 == 0.0 ) {
+			if ( S(texture, tc) == 1 && n >= 3 && n <= 6 && M1 && M2 ) {
 				
 				return vec4(1.0);
 				
